@@ -1,5 +1,7 @@
 package com.talkingdata.myna.tools;
 
+import java.util.Arrays;
+
 public class Statistics {
 
     public static float getMean(float[] data) {
@@ -47,7 +49,7 @@ public class Statistics {
             }
         }
         freqAndMag[0] = sampleFreq * 1.0f / sampleCount * max_index;
-        freqAndMag[1] = (float)max_magnitude;
+        freqAndMag[1] = (float)max_magnitude / 100.0f;
         return freqAndMag;
     }
 
@@ -89,5 +91,16 @@ public class Statistics {
         }else{
             return temp / (data.length - ddof);
         }
+    }
+
+    public static float getMedian(float[] data){
+        Arrays.sort(data);
+        float median;
+        if (data.length % 2 == 0)
+            median = (data[data.length/2] + data[data.length/2 - 1])/2;
+        else
+            median = data[data.length/2];
+        return median;
+
     }
 }
